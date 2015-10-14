@@ -1,9 +1,11 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :new, :create, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create]
+  before_action :logged_in_and_admin, only: [:destroy]
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def show
     @reviews = @movie.reviews.order(created_at: :desc)
+    @review = Review.new
   end
 
   def new
@@ -46,11 +48,18 @@ class MoviesController < ApplicationController
       redirect_to category_path(@category)
     else
       flash[:success] = "This movie still exists, try again."
-      rendirect_to category_path(@category)
+      redirect_to category_path(@category)
     end
   end
 
   private
+
+    def logged_in_and_admin
+      unless current_user && current_user.admin?
+        flash[:danger] = "Oh no you didnt"
+        redirect_to root_url
+      end
+    end
 
     def set_movie
       @movie = Movie.find(params[:id])

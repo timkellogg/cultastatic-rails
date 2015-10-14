@@ -10,8 +10,10 @@
           <%= image_tag movie.picture.url(:thumb) if movie.picture? %>
           <%= movie.title %>
       <% end %>
-      <%= link_to movie_path(movie), :method => :delete do %>
-        <span class="pull-right"><i class="glyphicon glyphicon-trash"></i></span>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to movie_path(movie), :method => :delete do %>
+          <span class="pull-right"><i class="glyphicon glyphicon-trash"></i></span>
+          <% end %>
       <% end %>
         </li>
     <% end %>
