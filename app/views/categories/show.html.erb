@@ -9,8 +9,11 @@
         <li class="list-group-item">
           <%= image_tag movie.picture.url(:thumb) if movie.picture? %>
           <%= movie.title %>
-        </li>
       <% end %>
+      <%= link_to movie_path(movie), :method => :delete do %>
+        <span class="pull-right"><i class="glyphicon glyphicon-trash"></i></span>
+      <% end %>
+        </li>
     <% end %>
   </ul>
 <% end %>

@@ -29,9 +29,25 @@ class MoviesController < ApplicationController
   end
 
   def update
+    if @movie.update(movie_params)
+      flash[:success] = "Edits saved"
+      redirect_to @movie
+    else
+      flash[:danger] = "Edits saved"
+      render 'edit'
+    end
   end
 
   def destroy
+    @category = @movie.category
+
+    if @movie.destroy
+      flash[:success] = "This movie is gone forever."
+      redirect_to category_path(@category)
+    else
+      flash[:success] = "This movie still exists, try again."
+      rendirect_to category_path(@category)
+    end
   end
 
   private

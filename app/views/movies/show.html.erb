@@ -11,3 +11,7 @@
 <p> Release date: <%= @movie.release %> </p>
 
 <p> Summary: <%= @movie.summary %> </p>
+
+<% if user_signed_in? %>
+  <%= link_to "Edit", edit_movie_path(@movie) %>
+<% end %>
