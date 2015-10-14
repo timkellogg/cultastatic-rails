@@ -9,6 +9,19 @@ User.create!(
   Category.create!(
     name: %w[j k i e r e z n a x y q u o p z y e].sample(10).join("")
   )
+  5.times do |movie|
+    Movie.create(
+      :title => Faker::Name.name,
+      :director => Faker::Name.name,
+      :release => Faker::Date.backward,
+      :runtime => rand(60..180),
+      :summary => Faker::Lorem.paragraph(3),
+      :picture =>  Faker::Avatar.image("50x50"),
+      :actors => Faker::Lorem.words(4),
+      :category_id => Category.last.id
+
+      )
+  end
 end
 
 User.create!(

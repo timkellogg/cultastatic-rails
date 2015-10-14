@@ -1,0 +1,19 @@
+<%= render "layouts/errors", :object => @movie %>
+
+<%= form_for [@category, @movie], html: { multipart: true } do |f| %>
+  <%= f.label :title %>
+  <%= f.text_area :title %>
+  <%= f.label :director%>
+  <%= f.text_area :director %>
+  <%= f.label :release%>
+  <%= f.text_area :release %>
+  <%= f.label :runtime %>
+  <%= f.text_area :runtime %>
+  <%= f.label :summary%>
+  <%= f.text_area :summary %>
+  <%= f.label :picture%>
+  <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  <%= f.label :actors%>
+  <%= f.text_area :actors %>
+  <%= f.submit %>
+<% end %>

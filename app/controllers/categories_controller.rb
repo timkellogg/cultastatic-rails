@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @movies = @category.movies
   end
 
 
