@@ -1,0 +1,11 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.navbar-brand {
+  font-size: 1.8em;
+  color: red;
+}
+
+.flash-container .alert {
+  margin-bottom: 0 !important;
+}
