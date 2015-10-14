@@ -28,12 +28,14 @@ User.create!(
  username: "a1l33n",
  email: "acacayorin@gmail.com",
  password: "notreal!",
- password_confirmation: "notreal!"
+ password_confirmation: "notreal!",
+ admin: true
 )
 
 User.create!(
   username: "tkellogg",
   email: "tim.kellogg@gmail.com",
   password: "password",
-  password_confirmation: "password"
+  password_confirmation: "password",
+  admin: true
 )
