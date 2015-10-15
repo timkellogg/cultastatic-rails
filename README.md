@@ -10,16 +10,15 @@ To see admin features, log in with email: "username@gmail.com", password: "passw
 ## Installation
 
 * `git clone <repository-url>` this repository
-* change into the new directory
+* `cd` into the new directory
 * `bundle install`
 * `rake db:create`
-* `rake db:migrate`
+* `rake db:reset`
 
 ## Running / Development
 
 * `rails server`
-* Visit your app at [http://localhost:4200](http://localhost:3000).
-
+* Visit your app at [http://localhost:3000](http://localhost:3000).
 
 ### Legal
 
