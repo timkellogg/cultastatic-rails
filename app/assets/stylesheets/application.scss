@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 .navbar-brand {
   font-size: 1.8em;
@@ -28,4 +29,21 @@
 
 .btn-group {
   padding: 10px;
+}
+
+.fa {
+  color: gold;
+}
+
+.wide-input {
+  min-width: 50% !important;
+}
+
+.form-group .review {
+  margin: 5px;
+}
+
+#review {
+  margin: 20px;
+
 }

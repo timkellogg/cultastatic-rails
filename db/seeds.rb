@@ -2,7 +2,8 @@ User.create!(
   username: "username",
   email: "username@gmail.com",
   password: "password",
-  password_confirmation: "password"
+  password_confirmation: "password",
+  admin: true
 )
 
 # 20.times do |n|
@@ -31,19 +32,3 @@ Category.create!(:name => " Sci-Fi")
 Category.create!(:name => " Drama")
 Category.create!(:name => "Fantasy")
 Category.create!(:name => "Thriller")
-
-User.create!(
- username: "a1l33n",
- email: "acacayorin@gmail.com",
- password: "notreal!",
- password_confirmation: "notreal!",
- admin: true
-)
-
-User.create!(
-  username: "tkellogg",
-  email: "tim.kellogg@gmail.com",
-  password: "password",
-  password_confirmation: "password",
-  admin: true
-)

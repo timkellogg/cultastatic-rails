@@ -14,6 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" data-toggle="modal" data-target="#myModal">About</li></a>
         <% if user_signed_in? %>
           <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
@@ -24,8 +25,31 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-left">
+        <% if @category %>
         <li><%= link_to "Categories", categories_path  %></li>
+        <% end %>
+        <% if @movie %>
+          <li><%= link_to "#{@movie.category.name}", category_path(@movie.category) %></li>
+        <% end  %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Cultastic</h4>
+      </div>
+      <div class="modal-body">
+      Cultastic is cult movie fansite. Sign up and list your favorite movies, add reviews, and find new movies to enjoy!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

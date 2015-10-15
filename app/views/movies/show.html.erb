@@ -1,32 +1,51 @@
-<%= link_to "Back to #{@category.name}", category_path(@category), class: 'btn btn-primary' %>
+
 <%= image_tag @movie.picture.url %>
 
-<h1><%= @movie.title %> </h1>
+<h1><%= @movie.title %>
+  <% if user_signed_in? %>
+    <%= link_to "Edit", edit_movie_path(@movie), class: ' btn btn-default' %>
+  <% end %>
+</h1>
 
-<p> <%= @movie.average_rating %> </p>
+<span class="user_ratings" data-toggle="tooltip" data-placement="bottom" title="Average ratings for <%= @movie.title %>">
+  <% @average_rating.times do |rating| %>
+    <%= fa_icon "star" %>
+  <% end %>
+</span>
 
 
-<h3>Directed by:<%= @movie.director %> </h3>
+<h3>Directed by: <%= @movie.director %> </h3>
 
-<p>Cast: <%= @movie.actors %></p>
+<p class="lead">Cast: <%= @movie.actors %></p>
 
-<p> Runtime: <%= @movie.runtime %> minutes</p>
+<p class="lead"> Runtime: <%= @movie.runtime %></p>
 
-<p> Release date: <%= @movie.release %> </p>
+<p class="lead"> Release date: <%= @movie.release.strftime("%B %d, %Y") %> </p>
 
-<p> Summary: <%= @movie.summary %> </p>
+<p class="lead"> Summary: <%= @movie.summary %> </p>
 
-<% if user_signed_in? %>
-  <%= link_to "Edit", edit_movie_path(@movie) %>
-<% end %>
 
-<%= render partial: 'reviews/form' %>
-
+<div class="review-container">
+  <%= render partial: 'reviews/form' %>
+</div>
 
 <% if @reviews.any? %>
-  <ul>
-    <% @reviews.each do |review| %>
-      <li> <%= review.body %> </li>
-    <% end %>
-  </ul>
+  <% @reviews.each do |review| %>
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            <%= review.user.username if review.user %>
+            <% review.rating.times do |rating| %>
+              <%= fa_icon "star" %>
+            <% end %>
+          <span class="pull-right"><i><%= time_ago_in_words(review.created_at) %> ago</i></span>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <p class="lead"><%= review.body %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <%end %>

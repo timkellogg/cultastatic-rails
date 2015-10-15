@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
     @reviews = @movie.reviews.order(created_at: :desc)
     @review = Review.new
     @category = @movie.category
+    @average_rating = (@movie.average_rating).ceil
   end
 
   def new

@@ -1,20 +1,46 @@
-<div class="row text-center">
-<% if user_signed_in? %>
-  <%= render 'form' %>
-<% end %>
+<div class="row">
+
+    <div class="row text-center">
+    <% if user_signed_in? %>
+      <%= render 'form' %>
+    <% end %>
 
 </div>
 
-<% if @categories.any? %>
-  <%= will_paginate @categories, renderer: BootstrapPagination::Rails %>
+</div>
+<div class="row">
 
-  <ul class="list-group">
-    <% @categories.each do |category| %>
-      <li class="list-group-item"> <span class="title"><%= link_to category.name, category_path(category)%></span>
-        <% if user_signed_in? && current_user.admin? %>
-        <%= link_to "Delete", category_path(category), :data => {:confirm => "Are you sure?",
-        :method => "delete"}, class: 'pull-right' %> </li>
-      <% end %>
+  <div class="col-xs-6 col-md-4">
+    <% if @categories.any? %>
+      <%= will_paginate @categories, renderer: BootstrapPagination::Rails %>
+
+      <ul class="list-group">
+        <% @categories.each do |category| %>
+          <li class="list-group-item"> <span class="title"><%= link_to category.name, category_path(category)%></span>
+            <% if user_signed_in? && current_user.admin? %>
+            <%= link_to "Delete", category_path(category), :data => {:confirm => "Are you sure?",
+            :method => "delete"}, class: 'pull-right' %> </li>
+          <% end %>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
+
+
+  <div class="col-xs-12 col-md-8">
+    <% if @movies.any? %>
+    <ul class="list-group">
+      <% @movies.each do |movie| %>
+      <%= link_to movie_path(movie) do %>
+      <li class="list-group-item">
+        <%= image_tag movie.picture.url(:thumb) if movie.picture? %>
+        <%= movie.title %>
+        <span class="label label-default"><%= movie.reviews.count %></span>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+
+</div>
