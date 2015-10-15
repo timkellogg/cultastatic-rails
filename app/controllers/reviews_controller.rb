@@ -8,6 +8,8 @@ class ReviewsController < ApplicationController
     @review = @movie.reviews.new(review_params)
 
     if @review.save
+      @movie.calculate_rating
+      @movie.save
       flash[:success] = "Review was saved"
       redirect_to @movie
     else

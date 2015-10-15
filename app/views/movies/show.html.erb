@@ -1,6 +1,10 @@
+<%= link_to "Back to #{@category.name}", category_path(@category), class: 'btn btn-primary' %>
 <%= image_tag @movie.picture.url %>
 
 <h1><%= @movie.title %> </h1>
+
+<p> <%= @movie.average_rating %> </p>
+
 
 <h3>Directed by:<%= @movie.director %> </h3>
 

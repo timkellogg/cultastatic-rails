@@ -6,6 +6,7 @@ class MoviesController < ApplicationController
   def show
     @reviews = @movie.reviews.order(created_at: :desc)
     @review = Review.new
+    @category = @movie.category
   end
 
   def new

@@ -1,6 +1,14 @@
 <h1> <%= @category.name %> </h1>
 <%= link_to "Edit", edit_category_path(@category) %>
 
+<div class="row">
+  <div class="btn-group" role="group" aria-label="...">
+
+    <%= link_to "Highest Rated", category_path(@category, :sort => 'highest_rated'), class: 'btn btn-default' %>
+    <%= link_to "Most Recent", category_path(@category, :sort => 'most_recent'), class: 'btn btn-default' %>
+    <%= link_to "Most Reviewed", category_path(@category, :sort => 'most_reviewed'), class: 'btn btn-default' %>
+  </div>
+</div>
 
 <% if @movies.any? %>
   <ul class="list-group">
@@ -9,6 +17,7 @@
         <li class="list-group-item">
           <%= image_tag movie.picture.url(:thumb) if movie.picture? %>
           <%= movie.title %>
+          <span class="label label-default"><%= movie.reviews.count %></span>
       <% end %>
       <% if user_signed_in? && current_user.admin? %>
         <%= link_to movie_path(movie), :method => :delete do %>
