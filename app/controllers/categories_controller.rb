@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+  
     if params[:sort] == "highest_rated"
       @movies = @category.movies.order(average_rating: :desc).paginate(page: params[:page], per_page: 10)
     elsif params[:sort] == "most_recent"
