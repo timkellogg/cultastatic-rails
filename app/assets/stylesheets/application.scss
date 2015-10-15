@@ -14,3 +14,18 @@
   height: 100px;
   width: 100px;
 }
+
+.list-group-item {
+  .title {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  &:hover {
+    background-color: darken(white, 3%);
+    cursor: pointer;
+  }
+}
+
+.btn-group {
+  padding: 10px;
+}

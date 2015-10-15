@@ -10,16 +10,15 @@ class CategoriesController < ApplicationController
   end
 
   def show
-
     if params[:sort] == "highest_rated"
-
       @movies = @category.movies.order(average_rating: :desc).paginate(page: params[:page], per_page: 10)
-
     elsif params[:sort] == "most_recent"
       @movies = @category.movies.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     elsif params[:sort] == "most_reviewed"
       @movies = @category.movies.sort_by {|movie| movie.reviews.count}
       @movies.reverse!
+    elsif params[:search]
+      @movies = @category.movies.search(params[:search]).order(created_at: :desc)
     else
       @movies = @category.movies
     end

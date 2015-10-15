@@ -15,6 +15,10 @@ class Movie < ActiveRecord::Base
       self.average_rating= average
   end
 
+  def self.search(query)
+    where("title like ?", "%#{query}%")
+  end
+
   def sort_reviews
     ordered_reviews = []
   end

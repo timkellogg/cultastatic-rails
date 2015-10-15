@@ -1,19 +1,37 @@
 <%= render "layouts/errors", :object => @movie %>
 
-<%= form_for [@category, @movie], html: { multipart: true } do |f| %>
-  <%= f.label :title %>
-  <%= f.text_area :title %>
-  <%= f.label :director%>
-  <%= f.text_area :director %>
-  <%= f.label :release%>
-  <%= f.text_area :release %>
-  <%= f.label :runtime %>
-  <%= f.text_area :runtime %>
-  <%= f.label :summary%>
-  <%= f.text_area :summary %>
-  <%= f.label :picture%>
-  <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-  <%= f.label :actors%>
-  <%= f.text_area :actors %>
-  <%= f.submit %>
-<% end %>
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for [@category, @movie], html: { multipart: true } do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :director%>
+      <%= f.text_field :director, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :release%>
+      <%= f.text_field :release, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :runtime %>
+      <%= f.text_field :runtime, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :summary%>
+      <%= f.text_field :summary, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :picture%>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+    <div class="form-group">
+      <%= f.label :actors%>
+      <%= f.text_field :actors, class: 'form-control' %>
+    </div>
+    <div class="row text-center">
+
+    <%= f.submit "Add movie", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
