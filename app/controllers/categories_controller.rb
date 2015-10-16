@@ -4,8 +4,7 @@ class CategoriesController < ApplicationController
 
 
   def index
-    @categories = Category.all.order(created_at: :desc)
-                          .paginate(page: params[:page], per_page: 10)
+    @categories = Category.all.order(:name).paginate(page: params[:page], per_page: 10)
     @category = Category.new
     @movies = Movie.all.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
